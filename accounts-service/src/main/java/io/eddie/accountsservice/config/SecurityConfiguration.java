@@ -19,6 +19,8 @@ public class SecurityConfiguration {
                 .csrf(AbstractHttpConfigurer::disable)
                 .cors(Customizer.withDefaults())
 
+                .formLogin(Customizer.withDefaults())
+
                 .sessionManagement(
                         config -> config.sessionCreationPolicy(
                                 SessionCreationPolicy.STATELESS
@@ -27,6 +29,7 @@ public class SecurityConfiguration {
 
                 .authorizeHttpRequests(
                         auth -> auth
+                                .requestMatchers(HttpMethod.POST, "/login").permitAll()
                                 .requestMatchers(HttpMethod.POST, "/accounts").permitAll()
                                 .anyRequest().authenticated()
                 )
