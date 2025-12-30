@@ -36,7 +36,7 @@ public class AccountApiController {
             HttpServletRequest request
     ) {
 
-        String header = request.getHeader("X-KNU-TOKEN");
+        String header = request.getHeader("X-KNU-CODE");
         log.info("header : {}", header);
 
         return ResponseEntity.ok("test");

@@ -35,11 +35,13 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests(
                         auth -> auth
                                 .requestMatchers(HttpMethod.POST, "/login").permitAll()
-                                .requestMatchers(HttpMethod.POST, "/accounts").permitAll()
-                                .anyRequest().authenticated()
+//                                .requestMatchers(HttpMethod.POST, "/accounts").permitAll()
+                                .requestMatchers(HttpMethod.POST, "/accounts/**").permitAll()
+                                .anyRequest().permitAll()
                 )
 
                 .build();
     }
 
 }
+//
