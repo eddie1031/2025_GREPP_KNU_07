@@ -12,24 +12,31 @@ spring:
         webflux:
           routes:
             - id: auth-sign-in
-              uri: lb://ACCCOUNTS-SERVICE
+              uri: lb://ACCOUNTS-SERVICE
               predicates:
                 - Path=/login
                 - Method=POST
 
+            - id: account-test-endpoint
+              uri: lb://ACCOUNTS-SERVICE
+              predicates:
+                - Path=/accounts/test
+              filters:
+                - TokenAuthenticationFilter
+
             - id: auth-sign-out
-              uri: lb://ACCCOUNTS-SERVICE
+              uri: lb://ACCOUNTS-SERVICE
               predicates:
                 - Path=/logout
 
             - id: account-create
-              uri: lb://ACCCOUNTS-SERVICE
+              uri: lb://ACCOUNTS-SERVICE
               predicates:
                 - Path=/accounts
                 - Method=POST
 
             - id: account-service-public
-              uri: lb://ACCCOUNTS-SERVICE
+              uri: lb://ACCOUNTS-SERVICE
               predicates:
                 - Path=/accounts/**
 
